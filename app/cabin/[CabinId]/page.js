@@ -1,18 +1,13 @@
 import Cabin from "@/app/_components/Cabin";
-import DateSelector from "@/app/_components/DateSelector";
 import Reservation from "@/app/_components/Reservation";
-import ReservationForm from "@/app/_components/ReservationForm";
 import Spinner from "@/app/_components/Spinner";
-import TextExpander from "@/app/_components/TextExpander";
-import { getBookedDatesByCabinId, getCabin, getCabins, getSettings } from "@/app/_lib/data-service";
-import { EyeSlashIcon, MapPinIcon, UsersIcon } from "@heroicons/react/24/solid";
-import Image from "next/image";
+import { getCabin, getCabins, getSettings } from "@/app/_lib/data-service";
 import { Suspense } from "react";
 
 // export const revalidate = 5;
 
 export async function generateMetadata({params}){
-    const {name} = await  getCabin(params.CabinId)
+    const {name} = await  getCabin(params.cabinId)
     return {title: `Cabin ${name}`}
 }
 
@@ -31,7 +26,7 @@ export async function generateStaticParams(){
 export default async function Page({params}) {
   console.log(params)
 
-    const cabin = await getCabin(params.CabinId)
+    const cabin = await getCabin(params.cabinId)
    
 
     console.log(cabin)
