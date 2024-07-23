@@ -8,7 +8,7 @@ import { EyeSlashIcon, MapPinIcon, UsersIcon } from "@heroicons/react/24/solid";
 import Image from "next/image";
 import { Suspense } from "react";
 
-export const revalidate = 5;
+// export const revalidate = 5;
 
 export async function generateMetadata({params}){
     const {name} = await  getCabin(params.CabinId)
