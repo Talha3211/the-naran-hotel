@@ -1,6 +1,4 @@
 // import { Description, Title } from "@mui/icons-material"
-import Logo from "./_components/Logo"
-import Navigation from "./_components/navigation"
 
 import {Josefin_Sans} from "next/font/google"
 
