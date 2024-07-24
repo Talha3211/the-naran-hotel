@@ -23,11 +23,11 @@ import { Suspense } from "react";
 //   return ids
 // }
 
-///
-export default async function Page() {
-  
 
-    const cabin = await getCabin(2)
+export default async function Page({params:{cabinId}}) {
+  console.log(cabinId)
+
+    const cabin = await getCabin(cabinId)
    
 
     console.log(cabin)
