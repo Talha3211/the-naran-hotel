@@ -1,4 +1,3 @@
-
 import Cabin from "@/app/_components/Cabin";
 import Reservation from "@/app/_components/Reservation";
 import Spinner from "@/app/_components/Spinner";
@@ -24,10 +23,10 @@ import { Suspense } from "react";
 // }
 
 
-export default async function Page({params:{cabinId}}) {
-  console.log(cabinId)
+export default async function Page() {
+  
 
-    const cabin = await getCabin(cabinId)
+    const cabin = await getCabin(2)
    
 
     console.log(cabin)
