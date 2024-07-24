@@ -85,7 +85,7 @@ export async function getBookings(guestId) {
     .select(
       "id, created_at, startDate, endDate, numNights, numGuests, totalPrice, guestId, cabinId, cabinss(name, image)"
     )
-    .eq("guestId", 2)
+    .eq("guestId", guestId)
     .order("startDate");
 console.log(data)
   if (error) {
