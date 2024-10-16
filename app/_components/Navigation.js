@@ -29,11 +29,13 @@ export default async function Navigation() {
               href="/account"
               className="hover:text-accent-400 transition-colors flex gap-4 items-center"
             >
-              <img
-                className="h-8 rounded-full"
-                src={session.user.image}
-                alt={session.user.name}
-              />
+              <div className="hidden sm:block">
+                <img
+                  className="h-8 rounded-full"
+                  src={session.user.image}
+                  alt={session.user.name}
+                />
+              </div>
               <span>Guest area</span>
             </Link>
           </li>
