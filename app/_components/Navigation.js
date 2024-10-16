@@ -3,11 +3,10 @@ import { auth } from "../_lib/auth";
 
 export default async function Navigation() {
   const session = await auth();
-  console.log(session);
 
   return (
-    <nav className="z-10 text-xl">
-      <ul className="flex gap-16 items-center">
+    <nav className="z-10 text-lg md:text-xl">
+      <ul className="flex flex-row gap-6 md:gap-16 items-center">
         <li>
           <Link
             href="/cabin"
@@ -35,7 +34,6 @@ export default async function Navigation() {
                 src={session.user.image}
                 alt={session.user.name}
               />
-
               <span>Guest area</span>
             </Link>
           </li>
