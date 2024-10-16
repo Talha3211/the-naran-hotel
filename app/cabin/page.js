@@ -3,20 +3,19 @@ import CabinList from "../_components/CabinList";
 import Spinner from "../_components/Spinner";
 import Filter from "../_components/Filter";
 import ReservationReminder from "../_components/ReservationReminder";
- 
 
 // export const revalidate = 15;
 
-export default async function Page({searchParams}) {
+export default async function Page({ searchParams }) {
   // console.log(searchParams)
   // CHANGE
- 
-  const filter = searchParams?.capacity ?? 'all'
+
+  const filter = searchParams?.capacity ?? "all";
 
   return (
     <div>
       <h1 className="text-4xl mb-5 text-accent-400 font-medium">
-        Our Luxury Cabins
+        Our Luxury Cabinss
       </h1>
       <p className="text-primary-200 text-lg mb-10">
         Cozy yet luxurious cabins, located right in the heart of the Italian
@@ -27,13 +26,11 @@ export default async function Page({searchParams}) {
         to paradise.
       </p>
       <div className="flex justify-end mb-6">
-
-      <Filter/>
+        <Filter />
       </div>
-      <Suspense fallback={<Spinner/>}>
-
-      <CabinList filter={filter}/>
-      <ReservationReminder/>
+      <Suspense fallback={<Spinner />}>
+        <CabinList filter={filter} />
+        <ReservationReminder />
       </Suspense>
     </div>
   );
