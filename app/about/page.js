@@ -71,7 +71,7 @@ export default function Page() {
 
           <div>
             <a
-              href="/cabins"
+              href="/cabin"
               className="inline-block mt-4 bg-accent-500 px-6 lg:px-8 py-4 lg:py-5 text-primary-800 text-base lg:text-lg font-semibold hover:bg-accent-600 transition-all"
             >
               Explore our luxury cabins
