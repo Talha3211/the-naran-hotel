@@ -82,13 +82,13 @@ function ReservationCard({ booking, onDelete }) {
         {!isPast(new Date(startDate)) ? (
           <>
             {/* Edit Link */}
-            {/* <Link
+            <div
               href={`/account/reservations/edit/${id}`}
               className="group flex items-center justify-center gap-2 py-2 px-3 uppercase text-xs font-bold text-primary-300 hover:bg-accent-600 hover:text-primary-900 transition-colors"
             >
               <PencilSquareIcon className="h-5 w-5 text-primary-600 group-hover:text-primary-800 transition-colors" />
-              {/* <span>Edit</span> */}
-            </Link> */}
+              <span>Edit</span>
+            </div>
 
             {/* Delete Button */}
             <DeleteReservation bookingId={id} onDelete={onDelete} />
