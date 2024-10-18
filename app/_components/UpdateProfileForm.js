@@ -6,6 +6,7 @@ import { useFormStatus } from "react-dom";
 
 export default function UpdateProfileForm({ children, guest }) {
   const [idError, setIdError] = useState(""); // To hold error message for ID validation
+  const [formError, setFormError] = useState(""); // For handling general form errors
 
   // Function to handle input validation for National ID
   const handleNationalIDChange = (e) => {
@@ -19,11 +20,23 @@ export default function UpdateProfileForm({ children, guest }) {
     }
   };
 
+  // Function to handle form submission
+  const handleSubmit = (e) => {
+    // Prevent form from submitting if there is an error
+    if (idError) {
+      e.preventDefault(); // Prevent submission if National ID is invalid
+      setFormError("Please fix the errors in the form before submitting.");
+    } else {
+      setFormError(""); // Clear form error if there are no validation issues
+    }
+  };
+
   return (
     <div>
       <form
         action={updateProfile}
         className="bg-primary-900 py-8 px-12 text-lg flex gap-6 flex-col"
+        onSubmit={handleSubmit} // Handle form submit event
       >
         <div className="space-y-2">
           <label>Full name</label>
@@ -75,6 +88,10 @@ export default function UpdateProfileForm({ children, guest }) {
         <div className="flex justify-end items-center gap-6">
           <UpdateButton />
         </div>
+
+        {formError && (
+          <p className="text-red-500 text-sm mt-4">{formError}</p> // Display general form error
+        )}
       </form>
     </div>
   );
