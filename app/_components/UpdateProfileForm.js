@@ -1,21 +1,36 @@
-"use client"
+"use client";
 
 import { updateProfile } from "../_lib/action";
+import { useState } from "react";
+import { useFormStatus } from "react-dom";
 
-import {useFormStatus} from "react-dom"
-export default function UpdateProfileForm({children,guest}) {
+export default function UpdateProfileForm({ children, guest }) {
+  const [idError, setIdError] = useState(""); // To hold error message for ID validation
+
+  // Function to handle input validation for National ID
+  const handleNationalIDChange = (e) => {
+    const value = e.target.value;
+
+    // If the input contains non-numeric characters, prevent the change
+    if (!/^\d*$/.test(value)) {
+      setIdError("Only numbers are allowed");
+    } else {
+      setIdError(""); // Clear the error message if the input is valid
+    }
+  };
 
   return (
     <div>
-      
-      <form action={updateProfile} className="bg-primary-900 py-8 px-12 text-lg flex gap-6 flex-col">
+      <form
+        action={updateProfile}
+        className="bg-primary-900 py-8 px-12 text-lg flex gap-6 flex-col"
+      >
         <div className="space-y-2">
           <label>Full name</label>
           <input
-          name="fullName"
+            name="fullName"
             disabled
             defaultValue={guest.fullName}
-            
             className="px-5 py-3 bg-primary-200 text-primary-800 w-full shadow-sm rounded-sm disabled:cursor-not-allowed disabled:bg-gray-600 disabled:text-gray-400"
           />
         </div>
@@ -23,10 +38,9 @@ export default function UpdateProfileForm({children,guest}) {
         <div className="space-y-2">
           <label>Email address</label>
           <input
-          name="email"
+            name="email"
             disabled
             defaultValue={guest.email}
-
             className="px-5 py-3 bg-primary-200 text-primary-800 w-full shadow-sm rounded-sm disabled:cursor-not-allowed disabled:bg-gray-600 disabled:text-gray-400"
           />
         </div>
@@ -35,45 +49,46 @@ export default function UpdateProfileForm({children,guest}) {
           <div className="flex items-center justify-between">
             <label htmlFor="nationality">Where are you from?</label>
             <img
-            name='nationality'
+              name="nationality"
               src={guest.countryFlag}
               alt="Country flag"
               className="h-5 rounded-sm"
             />
           </div>
 
-        {children}
+          {children}
         </div>
 
         <div className="space-y-2">
           <label htmlFor="nationalID">National ID number</label>
           <input
-          defaultValue={guest.nationalID}
+            defaultValue={guest.nationalID}
             name="nationalID"
+            onInput={handleNationalIDChange} // Handle input change here
             className="px-5 py-3 bg-primary-200 text-primary-800 w-full shadow-sm rounded-sm"
           />
+          {idError && (
+            <p className="text-red-500 text-sm">{idError}</p> // Display error message if any
+          )}
         </div>
 
         <div className="flex justify-end items-center gap-6">
-         <UpdateButton/>
+          <UpdateButton />
         </div>
       </form>
     </div>
-  )
+  );
 }
 
+function UpdateButton() {
+  const { pending } = useFormStatus();
 
-function UpdateButton(){
-const {pending} = useFormStatus()
-// console.log(pending)
-
-  return(
-    <button className="bg-accent-500 px-8 py-4 text-primary-800 font-semibold hover:bg-accent-600 transition-all disabled:cursor-not-allowed disabled:bg-gray-500 disabled:text-gray-300">
-   {
-   pending?
-    "updating profile":
-    "Update profile"
-   }
-  </button>
-  )
+  return (
+    <button
+      className="bg-accent-500 px-8 py-4 text-primary-800 font-semibold hover:bg-accent-600 transition-all disabled:cursor-not-allowed disabled:bg-gray-500 disabled:text-gray-300"
+      disabled={pending}
+    >
+      {pending ? "Updating profile" : "Update profile"}
+    </button>
+  );
 }
